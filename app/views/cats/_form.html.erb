@@ -18,18 +18,18 @@
 
   <label>
     Age
-    <input type="text" name="cat[name]" value="<%= cat.name %>">
+    <input type="number" name="cat[age]" value="<%= cat.age %>">
   </label>
   <br>
 
   <label>
     Female
-    <input type="radio" name="cat[sex]" value="f"
+    <input type="radio" name="cat[sex]" value="F"
     <%= "checked" if cat.sex == "f" %>>
   </label>
   <label>
     Male
-    <input type="radio" name="cat[sex]" value="m"
+    <input type="radio" name="cat[sex]" value="M"
     <%= "checked" if cat.sex == "m" %>>
   </label>
   <br>

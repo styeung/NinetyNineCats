@@ -8,6 +8,8 @@ class CatsController < ApplicationController
   def show
     @cat = Cat.find(params[:id])
 
+    @rental_requests = CatRentalRequest.where(:cat_id => @cat.id).order(:start_date)
+
     render :show
   end
 
@@ -27,11 +29,6 @@ class CatsController < ApplicationController
     end
   end
 
-  def cat_params
-    params.require(:cat).permit(:name, :age, :birth_date,
-                                :color, :sex, :description)
-  end
-
   def edit
     @cat = Cat.find(params[:id])
 
@@ -46,5 +43,12 @@ class CatsController < ApplicationController
     else
       render :edit
     end
+  end
+
+  private
+
+  def cat_params
+    params.require(:cat).permit(:name, :age, :birth_date,
+                                :color, :sex, :description)
   end
 end
