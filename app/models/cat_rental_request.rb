@@ -9,6 +9,14 @@ class CatRentalRequest < ActiveRecord::Base
     dependent: :destroy
   )
 
+  belongs_to(
+    :requester,
+    class_name: "User",
+    :foreign_key => :user_id,
+    :primary_key => :id
+  )
+
+
   after_initialize do |request|
     request.status ||= "PENDING"
   end

@@ -4,7 +4,14 @@
   <title>NinetyNineCats</title>
 </head>
 <body>
-
+  <% if signed_in? %>
+    WELCOME <%= current_user.user_name %> TO CAT HEAVENNNN
+    <%= button_to("Sign out", session_url, method: "delete")%>
+  <% else %>
+    <a href=<%= new_session_url %>>Sign in</a>
+    <br>
+    <a href=<%= new_user_url %>>Sign up</a>
+  <% end %>
 <%= yield %>
 
 </body>

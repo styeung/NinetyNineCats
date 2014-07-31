@@ -19,6 +19,9 @@
     <td><%= @cat.description %></td>
   </tr>
 </table>
+<% if owns_cat?(@cat) %>
+  <a href= <%= edit_cat_url(@cat) %>>Edit this cat</a>
+<% end %>
 <br>
 <table>
   <caption><h2>Rental Requests</h2></caption>
@@ -26,6 +29,7 @@
     <th>Start Date</th>
     <th>End Date</th>
     <th>Status</th>
+    <th>Requester</th>
     <th>Approve/Deny</th>
   </tr>
   <% @rental_requests.each do |request| %>
@@ -33,7 +37,8 @@
     <td><%= request.start_date %></td>
     <td><%= request.end_date %></td>
     <td><%= request.status %></td>
-    <% if request.pending? %>
+    <td><%= User.find(request.user_id).user_name %></td>
+    <% if request.pending? && owns_cat?(@cat) %>
       <td><%= button_to "Approve", [:approve, request] %></td>
       <td><%= button_to "Deny", [:deny, request] %></td>
     <% end %>
